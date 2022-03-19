@@ -1,5 +1,5 @@
 name: boleto
-description: A new Flutter package project.
+description: A package to handle banking billets (Also known as "Boleto") conversion and validation.
 version: 0.0.1
 repository: "https://github.com/viniciusamelio/boleto"
 

@@ -45,7 +45,7 @@ class Boleto {
     }
   }
 
-  String? getLineFromCodebar(String barcode) {
+  String? getLineFromBarcode(String barcode) {
     String linha = barcode.replaceAll(RegExp("[^0-9]"), "");
 
     if (linha.length != 44) {
