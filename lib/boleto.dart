@@ -40,7 +40,7 @@ class Boleto {
   }
 
   _handleException(String line) {
-    if (line.length != 47) {
+    if (line.length < 47 || line.length > 48) {
       throw InvalidFormatBoletoException();
     }
   }
