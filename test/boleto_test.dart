@@ -5,7 +5,7 @@ import 'package:boleto/boleto.dart';
 void main() {
   final sut = Boleto();
 
-  test('Should give expected value', () {
+  test('Should give expected amount', () {
     final valor =
         sut.getAmount("03399.81334 06900.003317 40036.701015 1 89020000010990");
     expect(
@@ -41,4 +41,6 @@ void main() {
       equals("033"),
     );
   });
+
+  test("Should throw ", () {});
 }

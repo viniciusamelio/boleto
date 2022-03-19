@@ -3,11 +3,20 @@ library boleto;
 class Boleto {
   double getAmount(String line) {
     String cleanedLine = line.replaceAll(RegExp("[^0-9]"), "");
-    final size = cleanedLine.length - 1;
-    return (double.parse(
-          cleanedLine.substring(size - 9, size),
-        ) /
-        10);
+    final amountString =
+        cleanedLine.substring(cleanedLine.length - 10, cleanedLine.length);
+    String totalAmount;
+    if (amountString.length == 2) {
+      totalAmount = "0," + amountString;
+    } else if (amountString.length == 1) {
+      totalAmount = "0,0" + amountString;
+    } else {
+      totalAmount = amountString.substring(0, amountString.length - 2) +
+          "," +
+          amountString.substring(amountString.length - 2, amountString.length);
+    }
+
+    return double.parse(totalAmount.replaceAll(",", "."));
   }
 
   DateTime getExpireDate(String line) {
