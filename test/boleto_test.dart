@@ -31,4 +31,14 @@ void main() {
       ),
     );
   });
+
+  test("Should return expected bank code", () {
+    final bankCode = sut.getBankCode(
+      "03399.81334 06900.003325 56179.801016 3 89300000010990",
+    );
+    expect(
+      bankCode,
+      equals("033"),
+    );
+  });
 }

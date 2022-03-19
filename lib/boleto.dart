@@ -1,26 +1,31 @@
 library boleto;
 
 class Boleto {
-  double getAmount(String linha) {
-    String linhaTratada = linha.replaceAll(RegExp("[^0-9]"), "");
-    final size = linhaTratada.length - 1;
+  double getAmount(String line) {
+    String cleanedLine = line.replaceAll(RegExp("[^0-9]"), "");
+    final size = cleanedLine.length - 1;
     return (double.parse(
-          linhaTratada.substring(size - 9, size),
+          cleanedLine.substring(size - 9, size),
         ) /
         10);
   }
 
-  DateTime getExpireDate(String linha) {
-    String linhaTratada = linha.replaceAll(RegExp("[^0-9]"), "");
-    final size = linhaTratada.length - 1;
-    final countDays = int.parse(linhaTratada.substring(size - 13, size - 9));
+  DateTime getExpireDate(String line) {
+    String cleanedLine = line.replaceAll(RegExp("[^0-9]"), "");
+    final size = cleanedLine.length - 1;
+    final countDays = int.parse(cleanedLine.substring(size - 13, size - 9));
     return DateTime(1997, 10, 07).add(
       Duration(days: countDays),
     );
   }
 
-  String? getLineFromCodebar(String barra) {
-    String linha = barra.replaceAll(RegExp("[^0-9]"), "");
+  String getBankCode(String line) {
+    String cleanedLine = line.replaceAll(RegExp("[^0-9]"), "");
+    return cleanedLine.substring(0, 3);
+  }
+
+  String? getLineFromCodebar(String barcode) {
+    String linha = barcode.replaceAll(RegExp("[^0-9]"), "");
 
     if (linha.length != 44) {
       return null;
