@@ -1,8 +1,11 @@
 library boleto;
 
+import 'exceptions.dart';
+
 class Boleto {
   double getAmount(String line) {
     String cleanedLine = line.replaceAll(RegExp("[^0-9]"), "");
+    _handleException(cleanedLine);
     final amountString =
         cleanedLine.substring(cleanedLine.length - 10, cleanedLine.length);
     String totalAmount;
@@ -21,6 +24,8 @@ class Boleto {
 
   DateTime getExpireDate(String line) {
     String cleanedLine = line.replaceAll(RegExp("[^0-9]"), "");
+    _handleException(cleanedLine);
+
     final size = cleanedLine.length - 1;
     final countDays = int.parse(cleanedLine.substring(size - 13, size - 9));
     return DateTime(1997, 10, 07).add(
@@ -30,7 +35,14 @@ class Boleto {
 
   String getBankCode(String line) {
     String cleanedLine = line.replaceAll(RegExp("[^0-9]"), "");
+    _handleException(cleanedLine);
     return cleanedLine.substring(0, 3);
+  }
+
+  _handleException(String line) {
+    if (line.length != 47) {
+      throw InvalidFormatBoletoException();
+    }
   }
 
   String? getLineFromCodebar(String barcode) {

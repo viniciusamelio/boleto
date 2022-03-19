@@ -1,10 +1,10 @@
 import 'package:boleto/boleto.dart';
 
-abstract class BoletoException {}
+abstract class BoletoException implements Exception {}
 
-class InvalidFormatBoletoException extends Boleto {
+class InvalidFormatBoletoException extends Boleto implements Exception {
   @override
   String toString() {
-    return "Given line should contain 47 characters";
+    return "Given line should contain 47 or 48 characters";
   }
 }
