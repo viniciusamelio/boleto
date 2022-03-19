@@ -1,3 +1,4 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- Added Purchase Billet validation
+- Added barcode string conversion to digitable line
