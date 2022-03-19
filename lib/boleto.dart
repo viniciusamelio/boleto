@@ -19,7 +19,7 @@ class Boleto {
     );
   }
 
-  String? calculaLinha(String barra) {
+  String? getLineFromCodebar(String barra) {
     String linha = barra.replaceAll(RegExp("[^0-9]"), "");
 
     if (linha.length != 44) {
